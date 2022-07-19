@@ -17,7 +17,8 @@ import {
    ActivityIndicator,
    Dimensions,
    Linking,
-   RefreshControl
+   RefreshControl,
+   ImageBackground
 } from 'react-native';
 
 const width = Dimensions.get('window').width;
@@ -147,6 +148,15 @@ class App extends Component {
             style={styles.image}
           />
         </TouchableOpacity>
+
+        <ImageBackground source={require('./src/images/image1.jpg')} style={
+          {
+            flex:1, 
+            resizeMode:'cover', 
+            justifyContent:'center',
+            alignItems:'center'}}>
+          <Text>Hello World</Text>
+        </ImageBackground>
 
         <FlatList
           style={{flex:1, marginTop: 20}}

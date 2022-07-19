@@ -8,8 +8,16 @@ class App extends Component {
   }
   render() {
     return (
-      <View>
-        <Text>Hello</Text>
+      <View style={{flex:1}}>
+        <View style={{
+          backgroundColor:'crimson',
+          paddingVertical:20,
+          justifyContent: 'center',
+          alignItems:'center',
+          elevation:10
+        }}>
+          <Text style={{color:'#FFFFFF',fontWeight:'bold'}}>Header</Text>
+        </View>
       </View>
     );
   }

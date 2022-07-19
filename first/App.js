@@ -14,8 +14,12 @@ import {
    ToastAndroid,
    BackHandler,
    PermissionsAndroid,
-   ActivityIndicator
+   ActivityIndicator,
+   Dimensions
 } from 'react-native';
+
+const width = Dimensions.get('window').width;
+const height = Dimensions.get('window').height;
 
 class App extends Component {
   constructor(props) {
@@ -205,8 +209,8 @@ const styles = StyleSheet.create({
     marginTop:20
   },
   image : {
-    width:300,
-    height:300
+    width:width,
+    height:height/4
   },
   imageContainer : {
     justifyContent:'center',

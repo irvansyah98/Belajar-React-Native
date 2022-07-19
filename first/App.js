@@ -16,7 +16,8 @@ import {
    PermissionsAndroid,
    ActivityIndicator,
    Dimensions,
-   Linking
+   Linking,
+   RefreshControl
 } from 'react-native';
 
 const width = Dimensions.get('window').width;
@@ -28,6 +29,7 @@ class App extends Component {
     this.state = { 
       header : 'Home',
       value : true,
+      refresh : false,
       username : '',
       data : [1,2,3,4,5],
       dataBarang : [
@@ -149,6 +151,16 @@ class App extends Component {
         <FlatList
           style={{flex:1, marginTop: 20}}
           data={this.state.dataBarang}
+          refreshControl={
+            <RefreshControl
+              refreshing={this.state.refresh}
+              onRefresh={() => {
+                  console.log('refresh'); 
+                  this.setState({refresh:false})
+                }
+              }
+            />
+          }
           renderItem={({item,index}) => 
             <TouchableOpacity 
             onPress={() => ToastAndroid.show('clicked ' + item.namaBarang,ToastAndroid.SHORT)}

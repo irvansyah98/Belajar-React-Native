@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import {Text, View, StatusBar, Image} from 'react-native';
+import {Text, View, StatusBar, Image, TouchableOpacity} from 'react-native';
 
 class App extends Component {
   constructor(props) {
@@ -22,9 +22,22 @@ class App extends Component {
         <View style={{justifyContent:'center',alignItems:'center'}}>
           <Image 
             source={require('./src/images/image1.jpg')}
-            style={{width:300,height:600}}
+            style={{width:300,height:300}}
           />
         </View>
+
+        <TouchableOpacity style={{
+          backgroundColor:'#c62828',
+          paddingVertical:20,
+          justifyContent:'center',
+          alignItems:'center',
+          marginTop:20,
+          marginHorizontal:20,
+          elevation:3,
+          borderRadius:50
+        }}>
+          <Text style={{color:"#ffffff"}}>Click Me</Text>
+        </TouchableOpacity>
       </View>
     );
   }

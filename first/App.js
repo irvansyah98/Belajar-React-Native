@@ -1,12 +1,13 @@
 import React, { Component } from 'react';
-import {Text, View, StatusBar, Image, TouchableOpacity, Switch} from 'react-native';
+import {Text, View, StatusBar, Image, TouchableOpacity, Switch, TextInput} from 'react-native';
 
 class App extends Component {
   constructor(props) {
     super(props);
     this.state = { 
       header : 'Home',
-      value : true
+      value : true,
+      username : ''
      };
   }
   render() {
@@ -37,6 +38,12 @@ class App extends Component {
             onValueChange={() => this.setState({value : !this.state.value})}
           />
         </View>
+
+        <TextInput
+          value={this.state.username}
+          style={{borderBottomWidth:1, marginHorizontal: 20, paddingVertical:10, borderColor:'#c62828'}}
+          onChangeText={(value) => this.setState({username:value})}
+        />
 
         <TouchableOpacity style={{
           backgroundColor:'#c62828',

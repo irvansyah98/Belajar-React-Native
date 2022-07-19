@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import {Text, View} from 'react-native';
+import {Text, View, StatusBar} from 'react-native';
 
 class App extends Component {
   constructor(props) {
@@ -9,8 +9,9 @@ class App extends Component {
   render() {
     return (
       <View style={{flex:1}}>
+      <StatusBar barStyle="light-content" backgroundColor="#e53935"/>
         <View style={{
-          backgroundColor:'crimson',
+          backgroundColor:'#c62828',
           paddingVertical:20,
           justifyContent: 'center',
           alignItems:'center',

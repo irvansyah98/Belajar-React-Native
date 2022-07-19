@@ -10,7 +10,8 @@ import {
    ScrollView, 
    StyleSheet,
    FlatList,
-   Alert
+   Alert,
+   ToastAndroid
 } from 'react-native';
 
 class App extends Component {
@@ -88,7 +89,9 @@ class App extends Component {
           style={{flex:1, marginTop: 20}}
           data={this.state.dataBarang}
           renderItem={({item,index}) => 
-            <View style={{
+            <TouchableOpacity 
+            onPress={() => ToastAndroid.show('clicked ' + item.namaBarang,ToastAndroid.SHORT)}
+            style={{
               marginBottom : 10,
               backgroundColor : '#e53935',
               marginHorizontal : 20,
@@ -97,7 +100,7 @@ class App extends Component {
             }}>
               <Text style={{color:'#ffffff'}}>{item.namaBarang}</Text>
               <Text style={{color:'#ffffff'}}>{item.harga}</Text>
-            </View>
+            </TouchableOpacity>
           }
           keyExtractor={(item) => item.namaBarang}
         />

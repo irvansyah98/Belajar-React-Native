@@ -13,7 +13,8 @@ import {
    Alert,
    ToastAndroid,
    BackHandler,
-   PermissionsAndroid
+   PermissionsAndroid,
+   ActivityIndicator
 } from 'react-native';
 
 class App extends Component {
@@ -115,6 +116,9 @@ class App extends Component {
             {this.state.header}
           </Text>
         </View>
+        
+        <ActivityIndicator size='large' color='crimson' animating={true} />
+
         <TouchableOpacity
           onPress={ () => this.requestCameraPermission()
             // Alert.alert('Warning','Sukses',[

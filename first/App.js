@@ -12,7 +12,8 @@ import {
    FlatList,
    Alert,
    ToastAndroid,
-   BackHandler
+   BackHandler,
+   PermissionsAndroid
 } from 'react-native';
 
 class App extends Component {
@@ -71,6 +72,29 @@ class App extends Component {
     return true;
   }
 
+  requestCameraPermission = async() => {
+    try {
+      const granted = await PermissionsAndroid.request(
+        PermissionsAndroid.PERMISSIONS.CAMERA,
+        {
+          title: "Ijin Akses",
+          message: "Ijinkan akses kamera",
+          buttonNeutral: "Nanti",
+          buttonNegative: "Tidak",
+          buttonPositive: "OK"
+        }
+      )
+
+      if(granted === PermissionsAndroid.RESULTS.GRANTED){
+        console.log("akses diberikan");
+      }else{
+        console.log("akses ditolak");
+      }
+    } catch (error) {
+      console.log(error);
+    }
+  }
+
   componentDidMount(){
     this.backHandler = BackHandler.addEventListener(
       'hardwareBackPress',
@@ -92,19 +116,19 @@ class App extends Component {
           </Text>
         </View>
         <TouchableOpacity
-          onPress={ () => 
-            Alert.alert('Warning','Sukses',[
-              {
-                text : 'Cancel',
-                onPress : () => console.log('cancel pressed'),
-                style : 'cancel'
-              },
-              {
-                text : 'Ok',
-                onPress : () => console.log('ok pressed'),
-                style : 'cancel'
-              }
-            ])
+          onPress={ () => this.requestCameraPermission()
+            // Alert.alert('Warning','Sukses',[
+            //   {
+            //     text : 'Cancel',
+            //     onPress : () => console.log('cancel pressed'),
+            //     style : 'cancel'
+            //   },
+            //   {
+            //     text : 'Ok',
+            //     onPress : () => console.log('ok pressed'),
+            //     style : 'cancel'
+            //   }
+            // ])
           }
           style={styles.imageContainer}>
           <Image 

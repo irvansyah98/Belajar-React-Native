@@ -11,7 +11,8 @@ import {
    StyleSheet,
    FlatList,
    Alert,
-   ToastAndroid
+   ToastAndroid,
+   BackHandler
 } from 'react-native';
 
 class App extends Component {
@@ -54,6 +55,33 @@ class App extends Component {
       ]
      };
   }
+
+  backAction = () => {
+    Alert.alert('Perhatian',"Apakah anda yakin ingin keluar?",[
+      {
+        text: 'Cancel',
+        onPress: () => null,
+        style: 'cancel'
+      },
+      {
+        text: 'Yes',
+        onPress: () => BackHandler.exitApp(),
+      }
+    ])
+    return true;
+  }
+
+  componentDidMount(){
+    this.backHandler = BackHandler.addEventListener(
+      'hardwareBackPress',
+      this.backAction
+    );
+  }
+
+  componentWillUnmount(){
+    this.backHandler.remove();
+  }
+
   render() {
     return (
       <View style={{flex:1}}>

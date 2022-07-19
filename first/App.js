@@ -15,7 +15,8 @@ import {
    BackHandler,
    PermissionsAndroid,
    ActivityIndicator,
-   Dimensions
+   Dimensions,
+   Linking
 } from 'react-native';
 
 const width = Dimensions.get('window').width;
@@ -124,7 +125,7 @@ class App extends Component {
         <ActivityIndicator size='large' color='crimson' animating={true} />
 
         <TouchableOpacity
-          onPress={ () => this.requestCameraPermission()
+          onPress={ () => Linking.openURL('https://google.com')
             // Alert.alert('Warning','Sukses',[
             //   {
             //     text : 'Cancel',

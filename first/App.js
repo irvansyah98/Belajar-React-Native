@@ -1,5 +1,17 @@
 import React, { Component } from 'react';
-import {Text, View, StatusBar, Image, TouchableOpacity, Switch, TextInput, ScrollView, StyleSheet} from 'react-native';
+import {
+  Text,
+   View, 
+   StatusBar, 
+   Image, 
+   TouchableOpacity, 
+   Switch, 
+   TextInput, 
+   ScrollView, 
+   StyleSheet,
+   FlatList,
+   Alert
+} from 'react-native';
 
 class App extends Component {
   constructor(props) {
@@ -7,26 +19,90 @@ class App extends Component {
     this.state = { 
       header : 'Home',
       value : true,
-      username : ''
+      username : '',
+      data : [1,2,3,4,5],
+      dataBarang : [
+        {
+          namaBarang : 'apel',
+          harga : 10000
+        },
+        {
+          namaBarang : 'jeruk',
+          harga : 15000
+        },
+        {
+          namaBarang : 'nanas',
+          harga : 17000
+        },
+        {
+          namaBarang : 'durian',
+          harga : 17000
+        },
+        {
+          namaBarang : 'semangka',
+          harga : 17000
+        },
+        {
+          namaBarang : 'jambu',
+          harga : 17000
+        },
+        {
+          namaBarang : 'nangka',
+          harga : 17000
+        },
+      ]
      };
   }
   render() {
     return (
-      <ScrollView style={{flex:1}}>
+      <View style={{flex:1}}>
       <StatusBar barStyle="light-content" backgroundColor="#e53935"/>
         <View style={styles.textheaderContainer}>
           <Text style={styles.textheader}>
             {this.state.header}
           </Text>
         </View>
-        <View style={styles.imageContainer}>
+        <TouchableOpacity
+          onPress={ () => 
+            Alert.alert('Warning','Sukses',[
+              {
+                text : 'Cancel',
+                onPress : () => console.log('cancel pressed'),
+                style : 'cancel'
+              },
+              {
+                text : 'Ok',
+                onPress : () => console.log('ok pressed'),
+                style : 'cancel'
+              }
+            ])
+          }
+          style={styles.imageContainer}>
           <Image 
             source={require('./src/images/image1.jpg')}
             style={styles.image}
           />
-        </View>
+        </TouchableOpacity>
 
-        <View style={styles.switch}>
+        <FlatList
+          style={{flex:1, marginTop: 20}}
+          data={this.state.dataBarang}
+          renderItem={({item,index}) => 
+            <View style={{
+              marginBottom : 10,
+              backgroundColor : '#e53935',
+              marginHorizontal : 20,
+              borderRadius : 10,
+              padding : 10
+            }}>
+              <Text style={{color:'#ffffff'}}>{item.namaBarang}</Text>
+              <Text style={{color:'#ffffff'}}>{item.harga}</Text>
+            </View>
+          }
+          keyExtractor={(item) => item.namaBarang}
+        />
+
+        {/* <View style={styles.switch}>
           <Switch
             value={this.state.value}
             onValueChange={() => this.setState({value : !this.state.value})}
@@ -41,8 +117,8 @@ class App extends Component {
 
         <TouchableOpacity style={styles.button}>
           <Text style={{color:"#ffffff"}}>Click Me</Text>
-        </TouchableOpacity>
-      </ScrollView>
+        </TouchableOpacity> */}
+      </View>
     );
   }
 }
